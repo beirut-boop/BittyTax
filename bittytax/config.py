@@ -37,6 +37,7 @@ class Config(object):
 
     DEFAULT_CONFIG = {
         'fiat_list': FIAT_LIST,
+        'fiat_main': CCY,
         'crypto_list': CRYPTO_LIST,
         'trade_asset_type': TRADE_ASSET_TYPE_PRIORITY,
         'show_empty_wallets': False,
@@ -74,6 +75,7 @@ class Config(object):
                 self.config[name] = default
 
         self.asset_priority = self.config['fiat_list'] + self.config['crypto_list']
+        self.CCY = self.config['fiat_main']
 
     def __getattr__(self, name):
         try:
@@ -88,6 +90,11 @@ class Config(object):
     def sym(self):
         if self.CCY == 'GBP':
             return u'\xA3' # £
-        raise ValueError("Currency not supported")
+        elif self.CCY == 'EUR':
+            return u'\u20AC' # €
+        elif self.CCY == 'USD':
+            return '$'
+        else:
+            raise ValueError("Currency not supported")
 
 config = Config()
