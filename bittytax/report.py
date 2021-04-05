@@ -70,7 +70,7 @@ class ReportPdf(object):
 
     @staticmethod
     def valuefilter(value):
-        return '&pound;{:0,.2f}'.format(value)
+        return config.sym() + '{:0,.2f}'.format(value)
 
     @staticmethod
     def ratefilter(rate):
