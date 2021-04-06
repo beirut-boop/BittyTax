@@ -20,9 +20,9 @@ class DataRow(object):
         self.parsed = False
         self.failure = None
 
-    def parse(self, parser, filename):
+    def parse(self, parser, filename, data_files, data_rows):
         try:
-            parser.row_handler(self, parser, filename)
+            parser.row_handler(self, parser, filename, data_files, data_rows)
         except DataParserError as e:
             self.failure = e
 

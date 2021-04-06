@@ -23,6 +23,10 @@ class AuditRecords(object):
                        disable=bool(config.args.debug or not sys.stdout.isatty())):
             if config.args.debug:
                 print("%saudit: TR %s" % (Fore.MAGENTA, tr))
+
+            if str(tr.timestamp).startswith('2016-10-23 05:44'):
+                thisisdebug = True
+
             if tr.buy:
                 self._add_tokens(tr.wallet, tr.buy.asset, tr.buy.quantity)
 
@@ -98,6 +102,6 @@ class AuditRecords(object):
                 '{:0,f}'.format(quantity.normalize())))
 
         if self.wallets[wallet][asset] < 0 and asset not in config.fiat_list:
-            tqdm.write("%sWARNING%s Balance at %s:%s is negative %s" % (
+            tqdm.write("%sWARNING%s Balance at %s:%s is negative %s after subtracting %s" % (
                 Back.YELLOW+Fore.BLACK, Back.RESET+Fore.YELLOW,
-                wallet, asset, '{:0,f}'.format(self.wallets[wallet][asset].normalize())))
+                wallet, asset, '{:0,f}'.format(self.wallets[wallet][asset].normalize()), '{:0,f}'.format(quantity))),

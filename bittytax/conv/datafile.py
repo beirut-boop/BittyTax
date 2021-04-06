@@ -32,7 +32,7 @@ class DataFile(object):
                     sys.stderr.write("%sconv: row[%s] %s\n" % (
                         Fore.YELLOW, parser.in_header_row_num + data_row.line_num, data_row))
 
-                data_row.parse(parser, filename)
+                data_row.parse(parser, filename, self.data_files, self.data_rows)
         else:
             # all rows handled together
             DataRow.parse_all(self.data_rows, parser, filename)
