@@ -35,7 +35,7 @@ class DataFile(object):
                 data_row.parse(parser, filename)
         else:
             # all rows handled together
-            DataRow.parse_all(self.data_rows, parser, filename)
+            DataRow.parse_all(self.data_rows, parser, filename, self.data_files)
 
         failures = [data_row for data_row in self.data_rows if data_row.failure is not None]
         if failures:

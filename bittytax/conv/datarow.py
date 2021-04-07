@@ -33,8 +33,8 @@ class DataRow(object):
         return hash(self.in_row)
 
     @staticmethod
-    def parse_all(data_rows, parser, filename):
-        parser.all_handler(data_rows, parser, filename)
+    def parse_all(data_rows, parser, filename, data_files):
+        parser.all_handler(data_rows, parser, filename, data_files)
 
     def __str__(self):
         if self.failure is not None:
